@@ -104,7 +104,7 @@ impl Color for HSV {
     }else if 5.0 <= h_prime && h_prime < 6.0 {
       [chroma, 0.0, x]
     }else{
-      println!("I suppose this means H was undefined");
+      //println!("I suppose this means H was undefined");
       [0.0, 0.0, 0.0]
     };
 
