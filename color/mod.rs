@@ -1,5 +1,6 @@
 extern mod extra;
 use std::fmt;
+use extra::complex::{Cmplx};
 
 
 //  Trait for a color
@@ -133,7 +134,7 @@ impl fmt::Default for HSV {
 //  Easiest way to do this is probably just give Cmplx 
 //  The Color Trait
 //  Trait for a color
-impl Color for extra::complex::Cmplx<f64> {
+impl Color for Cmplx<f64> {
   fn to_hex(&self) -> ~str {
     self.to_rgb().to_hex()
   }

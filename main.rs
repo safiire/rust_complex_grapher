@@ -28,7 +28,6 @@ fn ppm_write_worker(port: Port<Packet>) -> () {
       Pixel(x, y, rgb) => {
         //  Write the pixel into the PPM 
         ppm.set_pixel(x, y, rgb);
-        //println!("Got thing {}, {}, {:?}", x, y, rgb);
       },
       Done => {
         //  Write the image to disk
