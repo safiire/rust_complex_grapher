@@ -20,7 +20,7 @@ Here is the output for
 
 f(z) = z^5 + 1
 
-![F(z) = Z^5 + 1](H(z)-=-z--1---z^-1.png "F(z) = Z^5 + 1")
+![F(z) = Z^5 + 1](f(z)-=-z^5-+-1.png) "F(z) = Z^5 + 1")
 
 f(z) = z - 1 - Z^-1
 
