@@ -1,4 +1,5 @@
 extern mod extra;
+use std::task::spawn;
 use color::{Color, RGB};
 use netpbm::{PPM};
 use viewport::{ViewPort};
@@ -41,12 +42,13 @@ fn ppm_write_worker(port: Port<Packet>) -> () {
 
 //  Main
 fn main() {
+
   let width = 1024;
   let height = 1024;
 
   let (port, chan): (Port<Packet>, SharedChan<Packet>) = SharedChan::new();
 
-  do spawn || { ppm_write_worker(port) }
+  spawn(proc() { ppm_write_worker(port) });
 
   //  Create a viewport into our complex plane
   let viewport = ViewPort::new(width, height, -3.0, 3.0, 3.0, -3.0);
@@ -56,14 +58,14 @@ fn main() {
     for x in range(0, width) {
 
       let my_chan = chan.clone();
-      do spawn || {
+      spawn(proc() {
         let mut z = viewport.pixel_to_complex(x, y);
 
         z = z.sine();
         let rgb = z.to_rgb();
 
         my_chan.send(Pixel(x, y, rgb));
-      }
+      });
     }
   }
   chan.send(Done);

@@ -49,9 +49,9 @@ impl Color for RGB {
 
 
 //  RGB can be printed with fmt
-impl fmt::Default for RGB {
-  fn fmt(obj: &RGB, f: &mut fmt::Formatter) {
-    write!(f.buf, "RGB({}, {}, {})", obj.r, obj.g, obj.b)
+impl fmt::Show for RGB {
+  fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    write!(f.buf, "RGB({}, {}, {})", self.r, self.g, self.b)
   }
 }
 
@@ -123,9 +123,9 @@ impl Color for HSV {
 
 
 //  HSV can be printed with fmt
-impl fmt::Default for HSV {
-  fn fmt(obj: &HSV, f: &mut fmt::Formatter) {
-    write!(f.buf, "HSV({}°, {}%, {}%)", obj.h * 360.0, obj.s * 100.0, obj.v * 100.0)
+impl fmt::Show for HSV {
+  fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    write!(f.buf, "HSV({}°, {}%, {}%)", self.h * 360.0, self.s * 100.0, self.v * 100.0)
   }
 }
 

@@ -24,7 +24,7 @@ impl PPM {
 
   fn get_offset(&self, x: uint, y: uint) -> Option<uint> {
     let offset = (y * self.width * 3) + (x * 3);
-    if(offset < self.buffer_size()){
+    if offset < self.buffer_size() {
       Some(offset)
     }else{
       None
@@ -59,11 +59,16 @@ impl PPM {
 
   pub fn write_file(&self, filename: &str) -> bool {
     let path = Path::new(filename);
-    let mut file = File::create(&path);
     let header = format!("P6 {} {} 255\n", self.width, self.height);
-    file.write(header.as_bytes());
-    file.write(self.data);
-    true
+    let file_contents = header.as_bytes() + self.data;
+
+    match File::create(&path).write(file_contents) {
+      Err(e) => {
+        println!("Failed to write image {}: {}", filename, e);
+        false
+      },
+      Ok(()) => true
+    }
   }
 
 }
