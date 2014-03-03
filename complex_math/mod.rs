@@ -1,6 +1,6 @@
-extern mod extra;
+extern crate num;
 use std::f64::{pow};
-use extra::complex::{Cmplx};
+use self::num::complex::{Cmplx};
 
 
 fn factorial(n: uint) -> uint {

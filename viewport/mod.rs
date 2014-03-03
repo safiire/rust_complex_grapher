@@ -1,5 +1,5 @@
-extern mod extra;
-use extra::complex::{Cmplx};
+extern crate num;
+use self::num::complex::{Cmplx};
 
 pub struct ViewPort {
   width: uint

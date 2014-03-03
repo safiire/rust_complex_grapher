@@ -1,6 +1,6 @@
-extern mod extra;
+extern crate num;
 use std::fmt;
-use extra::complex::{Cmplx};
+use self::num::complex::{Cmplx};
 
 
 //  Trait for a color

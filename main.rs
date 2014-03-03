@@ -1,5 +1,7 @@
-extern mod extra;
+extern crate extra;
 use std::task::spawn;
+use std::comm::{Port};
+use std::comm::{Chan};
 use color::{Color, RGB};
 use netpbm::{PPM};
 use viewport::{ViewPort};
@@ -46,7 +48,7 @@ fn main() {
   let width = 1024;
   let height = 1024;
 
-  let (port, chan): (Port<Packet>, SharedChan<Packet>) = SharedChan::new();
+  let (port, chan): (Port<Packet>, Chan<Packet>) = Chan::new();
 
   spawn(proc() { ppm_write_worker(port) });
 
